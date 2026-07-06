@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>જૂના સાધકો માટે સમૃદ્ધ સાધના</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-purple: #667eea;
+            --primary-blue: #764ba2;
+            --whatsapp-green: #25d366;
+            --text-dark: #1a1a1a;
+            --text-light: #666666;
+            --bg-light: #f8f9fa;
+            --border-light: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Gujarati Sangam MN', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* ===== HEADER SECTION ===== */
+        .header-container {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-container::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+        .header-container::after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            left: -100px;
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-title {
+            font-size: 2.8em;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .header-divider {
+            text-align: center;
+            font-size: 1.5em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .header-description {
+            text-align: center;
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+
+        .header-bottom {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .whatsapp-highlight {
+            text-align: center;
+            grid-column: 2;
+            background: white;
+            color: var(--whatsapp-green);
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1.2em;
+            white-space: nowrap;
+        }
+
+        /* ===== MAIN CONTAINER ===== */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 50px;
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        /* ===== CITIES GRID ===== */
+        .cities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .city-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .city-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .city-card-header {
+            padding: 15px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-size: 1.3em;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 60px;
+        }
+
+        .city-card-header.rajkot { background: linear-gradient(135deg, #663399 0%, #8B008B 100%); }
+        .city-card-header.bhavnagar { background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); }
+        .city-card-header.morbi { background: linear-gradient(135deg, #0d5d0d 0%, #166916 100%); }
+        .city-card-header.jetpur { background: linear-gradient(135deg, #ff9500 0%, #ffa500 100%); }
+        .city-card-header.junagadh { background: linear-gradient(135deg, #8b1538 0%, #c41e3a 100%); }
+        .city-card-header.girsomnath { background: linear-gradient(135deg, #008080 0%, #20b2aa 100%); }
+        .city-card-header.porbandar { background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%); }
+        .city-card-header.jamnagar { background: linear-gradient(135deg, #264653 0%, #2a9d8f 100%); }
+        .city-card-header.surendernagar { background: linear-gradient(135deg, #0047ab 0%, #4169e1 100%); }
+        .city-card-header.amreli { background: linear-gradient(135deg, #c41e3a 0%, #e74c3c 100%); }
+        .city-card-header.mahuva { background: linear-gradient(135deg, #006994 0%, #0a8fb3 100%); }
+
+        .city-icon {
+            font-size: 1.5em;
+        }
+
+        .city-card-image {
+            width: 100%;
+            height: 220px;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            flex-grow: 1;
+        }
+
+        .city-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .city-card-footer {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .whatsapp-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 14px;
+            background: var(--whatsapp-green);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-family: inherit;
+        }
+
+        .whatsapp-button:hover {
+            background: #1ead52;
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+        }
+
+        .whatsapp-button:active {
+            transform: scale(0.98);
+        }
+
+        .whatsapp-icon {
+            font-size: 1.3em;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer-container {
+            background: linear-gradient(135deg, #1a237e 0%, #004d99 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-icon {
+            font-size: 2em;
+        }
+
+        .footer-text {
+            font-size: 1.1em;
+            font-weight: 600;
+            line-height: 1.6;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 1024px) {
+            .cities-grid {
+                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+                gap: 25px;
+            }
+
+            .header-title {
+                font-size: 2.2em;
+            }
+
+            .header-bottom {
+                grid-template-columns: 1fr;
+            }
+
+            .whatsapp-highlight {
+                grid-column: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cities-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 20px;
+            }
+
+            .header-title {
+                font-size: 1.8em;
+            }
+
+            .header-description {
+                font-size: 0.95em;
+            }
+
+            .main-container {
+                padding: 40px 15px;
+            }
+
+            .section-title {
+                font-size: 1.5em;
+                margin-bottom: 35px;
+            }
+
+            .city-card-header {
+                font-size: 1.1em;
+                padding: 12px 15px;
+                min-height: 50px;
+            }
+
+            .city-icon {
+                font-size: 1.2em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cities-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .header-title {
+                font-size: 1.5em;
+            }
+
+            .header-description {
+                font-size: 0.9em;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .whatsapp-button {
+                padding: 12px;
+                font-size: 0.95em;
+            }
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .city-card {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .city-card:nth-child(1) { animation-delay: 0.1s; }
+        .city-card:nth-child(2) { animation-delay: 0.2s; }
+        .city-card:nth-child(3) { animation-delay: 0.3s; }
+        .city-card:nth-child(4) { animation-delay: 0.4s; }
+        .city-card:nth-child(n+5) { animation-delay: calc(0.1s * (var(--card-index, 1))); }
+    </style>
+</head>
+<body>
+    <!-- HEADER SECTION -->
+    <div class="header-container">
+        <div class="header-content">
+            <div class="header-title">જૂના સાધકો માટે સમૃદ્ધ સાધના</div>
+            <div class="header-divider">━━━━━ ◆◇◆ ━━━━━</div>
+            <div class="header-description">
+               વન-ડે શિબિર, નવી શરૂ થતી શિબિર, ગુરુજીના પ્રવચનો, ગુજરાતી અને હિન્દી પત્રિકા તેમજ વિવિધ વિષયોના પરિચય કાર્યક્રમોની સંપૂર્ણ માહિતી મેળવવા માટે નીચે આપેલ તમારા શહેરનો WhatsApp QR Code સ્કેન કરીને જોડાઓ
+            </div>
+           
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-container">
+        <div class="cities-grid" id="citiesGrid"></div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer-container">
+        <div class="footer-content">
+            <div class="footer-icon">🙏</div>
+            <div class="footer-text">
+                સાધના, સત્સંગ અને સારા કાર્યની માહિતી મેળવવા માટે તમારા શહેરનો QR Code સ્કેન કરો જોડાઈ રહો.
+            </div>
+            <div class="footer-icon">🙏</div>
+        </div>
+    </div>
+
+    <script>
+        // ===== DATA CONFIGURATION =====
+        const CITIES_DATA = [
+            {
+                id: 'rajkot',
+                name: 'રાજકોટ',
+                icon: '🏛️',
+                image: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==',
+                whatsappLink: 'https://chat.whatsapp.com/'
+            },
+            {
+                id: 'bhavnagar',
+                name: 'ભાવનગર',
+                icon: '🕌',
+                image: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==',
+                whatsappLink: 'https://chat.whatsapp.com/'
+            },
+            {
+                id: 'morbi',
+                name: 'મોરબી',
+                icon: '🌉',
+                image: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==',
+                whatsappLink: 'https://chat.whatsapp.com/'
+            },
+            {
+                id: 'jetpur',
+                name: 'જેતપુર',
+                icon: '🏰',
+                image: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==',
+                whatsappLink: 'https://chat.whatsapp.com/'
+            },
+            {
+                id: 'junagadh',
+                name: 'જુનાગઢ',
+                icon: '🛕',
+                image: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==',
+                whatsappLink: 'https://chat.whatsapp.com/'
+            },
+            {
+                id: 'girsomnath',
+                name: 'ગીર સોમનાથ',
+                icon: '🏛️',
+                image: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==',
+                whatsappLink: 'https://chat.whatsapp.com/'
+            },
+            {
+                id: 'porbandar',
+                name: 'પોરબંદર',
+                icon: '🏖️',
+                image: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==',
+                whatsappLink: 'https://chat.whatsapp.com/'
+            },
+            {
+                id: 'jamnagar',
+                name: 'જામનગર',
+                icon: '🏰',
+                image: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==',
+                whatsappLink: 'https://chat.whatsapp.com/'
+            },
+            {
+                id: 'surendernagar',
+                name: 'સુરેન્દ્રનગર',
+                icon: '🏛️',
+                image: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==',
+                whatsappLink: 'https://chat.whatsapp.com/'
+            },
+            {
+                id: 'amreli',
+                name: 'અમરેલી',
+                icon: '🕌',
+                image: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==',
+                whatsappLink: 'https://chat.whatsapp.com/'
+            },
+            {
+                id: 'mahuva',
+                name: 'મહુવા',
+                icon: '🏝️',
+                image: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==',
+                whatsappLink: 'https://chat.whatsapp.com/'
+            }
+        ];
+
+        // ===== QR CODE IMAGES MAPPING =====
+        const QR_CODE_IMAGES = {
+            'rajkot': 'Rajkot -1.jpeg',
+            'bhavnagar': 'Bhavnagar-2.jpeg',
+            'morbi': 'Morbi -3.jpeg',
+            'jetpur': 'Jetpur.png',
+            'junagadh': 'Junagadh.png',
+            'girsomnath': 'GirSomnath.png',
+            'porbandar': 'Porbandar.png',
+            'jamnagar': 'Jamnagar.png',
+            'surendernagar': 'SuNagar.png',
+            'amreli': 'Amreli.png',
+            'mahuva': 'Mahuva.png'
+        };
+
+        // ===== UTILITY FUNCTIONS =====
+        class WhatsAppGroupManager {
+            constructor(citiesData, qrImages) {
+                this.cities = citiesData;
+                this.qrImages = qrImages;
+                this.loadDataFromLocalStorage();
+            }
+
+            loadDataFromLocalStorage() {
+                const stored = localStorage.getItem('whatsappGroups');
+                if (stored) {
+                    try {
+                        const storedData = JSON.parse(stored);
+                        this.cities = this.cities.map(city => ({
+                            ...city,
+                            whatsappLink: storedData[city.id] || city.whatsappLink
+                        }));
+                    } catch (e) {
+                        console.error('Error loading stored data:', e);
+                    }
+                }
+            }
+
+            saveDataToLocalStorage() {
+                const data = {};
+                this.cities.forEach(city => {
+                    data[city.id] = city.whatsappLink;
+                });
+                localStorage.setItem('whatsappGroups', JSON.stringify(data));
+            }
+
+            updateCityLink(cityId, newLink) {
+                const city = this.cities.find(c => c.id === cityId);
+                if (city) {
+                    city.whatsappLink = newLink;
+                    this.saveDataToLocalStorage();
+                    return true;
+                }
+                return false;
+            }
+
+            getQRImagePath(cityId) {
+                const filename = this.qrImages[cityId];
+                // Return relative path - images should be in same directory
+                return filename ? filename : null;
+            }
+
+            renderCities() {
+                const container = document.getElementById('citiesGrid');
+                if (!container) return;
+
+                container.innerHTML = this.cities.map((city, index) => `
+                    <div class="city-card" style="--card-index: ${index + 1}">
+                        <div class="city-card-header ${city.id}">
+                            <span class="city-icon">${city.icon}</span>
+                            <span>${city.name}</span>
+                        </div>
+                        <div class="city-card-image">
+                            <img src="${this.getQRImagePath(city.id)}" alt="${city.name} QR Code" loading="lazy">
+                        </div>
+                        <div class="city-card-footer">
+                            <a href="${city.whatsappLink}" target="_blank" rel="noopener noreferrer" class="whatsapp-button">
+                                <span class="whatsapp-icon">📱</span>
+                                <span>WhatsApp માં જોડાયો</span>
+                            </a>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // ===== INITIALIZE APP =====
+        document.addEventListener('DOMContentLoaded', () => {
+            const manager = new WhatsAppGroupManager(CITIES_DATA, QR_CODE_IMAGES);
+            manager.renderCities();
+
+            // Optional: Admin panel for updating links
+            window.updateWhatsAppLink = (cityId, newLink) => {
+                if (manager.updateCityLink(cityId, newLink)) {
+                    manager.renderCities();
+                    alert(`${cityId} link updated!`);
+                } else {
+                    alert('City not found!');
+                }
+            };
+
+            console.log('WhatsApp Group Manager Initialized');
+            console.log('To update a city link, use: updateWhatsAppLink("cityId", "new_link")');
+        });
+    </script>
+</body>
+</html>
